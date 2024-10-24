@@ -193,16 +193,16 @@ fetch('data/movie_dataset.json')
     .then(response => response.json())
     .then(data => {
         movies = data.map(movie => ({
-            title: movie.title,
+            title: movie.title.trim().toLowerCase(),  // Normalize title
             features: extractFeatures(movie).split(" ")  // Split into words for cosine similarity
         }));
-        console.log('Movies loaded and processed:', movies);
+        console.log('Movies loaded and processed:', movies.map(movie => movie.title));  // Log titles
     })
     .catch(error => console.error('Error loading the movie dataset:', error));
 
 // Helper function to find a movie index by title
 function getIndexFromTitle(title) {
-    return movies.findIndex(movie => movie.title.toLowerCase() === title.toLowerCase());
+    return movies.findIndex(movie => movie.title === title.trim().toLowerCase());
 }
 
 // Cosine similarity function
