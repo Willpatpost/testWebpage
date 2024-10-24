@@ -182,7 +182,10 @@ let movies = [];  // This will hold the data once loaded
 
 // Helper function to extract relevant features from each movie
 function extractFeatures(movie) {
-    return (movie.keywords + " " + movie.cast + " " + movie.genres).toLowerCase();
+    const keywords = movie.keywords ? movie.keywords : "";
+    const cast = movie.cast ? movie.cast : "";
+    const genres = movie.genres ? movie.genres : "";
+    return (keywords + " " + cast + " " + genres).toLowerCase();
 }
 
 // Load the dataset and extract features
