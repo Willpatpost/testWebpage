@@ -177,8 +177,10 @@ function checkWin() {
     }
 }
 
-let movies = [];  // This will hold the data once loaded.
+// New movie recommender code
+let movies = [];  // This will hold the data once loaded
 
+// Load the dataset (converted JSON)
 fetch('movie_dataset.json')
   .then(response => response.json())
   .then(data => {
@@ -186,3 +188,51 @@ fetch('movie_dataset.json')
     console.log('Movies loaded:', movies);  // You can inspect the data in the browser console
   })
   .catch(error => console.error('Error loading the movie dataset:', error));
+
+// Helper function to find a movie index by title
+function getIndexFromTitle(title) {
+    return movies.findIndex(movie => movie.title.toLowerCase() === title.toLowerCase());
+}
+
+// Cosine similarity function
+function cosineSimilarity(vecA, vecB) {
+    let dotProduct = 0;
+    let normA = 0;
+    let normB = 0;
+    for (let i = 0; i < vecA.length; i++) {
+        dotProduct += vecA[i] * vecB[i];
+        normA += vecA[i] * vecA[i];
+        normB += vecB[i] * vecB[i];
+    }
+    return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+}
+
+// Function to recommend movies
+function recommendMovies() {
+    const inputTitle = document.getElementById('movieTitle').value.trim();
+    const movieIndex = getIndexFromTitle(inputTitle);
+
+    if (movieIndex === -1) {
+        alert('Movie not found!');
+        return;
+    }
+
+    const inputMovie = movies[movieIndex];
+    const similarities = movies.map((movie, index) => {
+        if (index === movieIndex) return 0;  // Ignore the same movie
+        return { title: movie.title, score: cosineSimilarity(inputMovie.features, movie.features) };
+    });
+
+    similarities.sort((a, b) => b.score - a.score);
+    const topMovies = similarities.slice(0, 20);
+
+    let resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';  // Clear previous results
+    topMovies.forEach(movie => {
+        const resultItem = document.createElement('p');
+        resultItem.textContent = `${movie.title} (Score: ${movie.score.toFixed(2)})`;
+        resultsDiv.appendChild(resultItem);
+    });
+}
+
+document.getElementById('recommendBtn').addEventListener('click', recommendMovies);
