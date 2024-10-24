@@ -525,3 +525,44 @@ footer {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* Add spacing between project buttons */
+.project {
+    margin-bottom: 20px;  /* Adds space between the sections */
+}
+
+.project .btn {
+    margin-top: 10px;  /* Adds space between buttons in the project section */
+}
+
+/* Style for project buttons to match the other buttons */
+.project .dropdown-btn {
+    background-color: var(--button-bg-color);  /* Red background like other buttons */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;  /* Bubble-like rounded shape */
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.project .dropdown-btn:hover {
+    background-color: var(--button-hover-bg);  /* Matches hover effect on other buttons */
+}
+
+/* Ensure spacing between buttons is consistent */
+.project .btn {
+    background-color: var(--button-bg-color);  /* Red background like other buttons */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;  /* Bubble-like rounded shape */
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.project .btn:hover {
+    background-color: var(--button-hover-bg);  /* Hover effect */
+}
