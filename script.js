@@ -181,11 +181,11 @@ function checkWin() {
 let movies = [];  // This will hold the data once loaded
 
 // Load the dataset (converted JSON)
-fetch('movie_dataset.json')
+fetch('data/movie_dataset.json')
   .then(response => response.json())
   .then(data => {
     movies = data;
-    console.log('Movies loaded:', movies);  // You can inspect the data in the browser console
+    console.log('Movies loaded:', movies);  // Check if the data is loaded
   })
   .catch(error => console.error('Error loading the movie dataset:', error));
 
