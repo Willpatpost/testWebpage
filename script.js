@@ -180,14 +180,22 @@ function checkWin() {
 // New movie recommender code
 let movies = [];  // This will hold the data once loaded
 
-// Load the dataset (converted JSON)
+// Helper function to extract relevant features from each movie
+function extractFeatures(movie) {
+    return (movie.keywords + " " + movie.cast + " " + movie.genres).toLowerCase();
+}
+
+// Load the dataset and extract features
 fetch('data/movie_dataset.json')
-  .then(response => response.json())
-  .then(data => {
-    movies = data;
-    console.log('Movies loaded:', movies);  // Check if the data is loaded
-  })
-  .catch(error => console.error('Error loading the movie dataset:', error));
+    .then(response => response.json())
+    .then(data => {
+        movies = data.map(movie => ({
+            title: movie.title,
+            features: extractFeatures(movie).split(" ")  // Split into words for cosine similarity
+        }));
+        console.log('Movies loaded and processed:', movies);
+    })
+    .catch(error => console.error('Error loading the movie dataset:', error));
 
 // Helper function to find a movie index by title
 function getIndexFromTitle(title) {
