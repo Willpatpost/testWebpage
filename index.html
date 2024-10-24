@@ -43,7 +43,7 @@
 
 <!-- Main Content -->
 <div class="container">
-    <!-- About Section -->
+<!-- About Section -->
     <section id="about">
         <h2>About Me</h2>
         <p>Hello, world! My name is William Poston, a senior at Old Dominion University pursuing a degree in Computer Science with a minor in Data Science. My passion for technology and innovation has driven me to dive deep into programming, algorithms, and artificial intelligence. I am constantly learning and exploring how software can be used to solve real-world problems.</p>
@@ -55,11 +55,11 @@
         <p>Looking forward, my long-term goal is to establish myself as a software engineer, focusing on either quantum computing or the finance sector. Both of these fields excite me due to their complexity and potential for impactful innovation. Whether it’s building full-stack applications or engineering new computational systems, I am eager to contribute to cutting-edge technologies that shape the future.</p>
     </section>
 
-    <!-- Projects Section -->
+<!-- Projects Section -->
     <section id="projects">
         <h2>Projects</h2>
 
-        <!-- Sliding Puzzle Project -->
+<!-- Sliding Puzzle Project -->
         <div class="project">
             <button class="dropdown-btn" data-target="project1">Sliding Puzzle Game</button>
             <div id="project1" class="dropdown-container hidden">
@@ -76,21 +76,23 @@
             </div>
         </div>
 
-        <!-- Movie Recommender Project -->
-        <div class="project">
-            <button class="dropdown-btn" data-target="project2">Movie Recommender</button>
-            <div id="project2" class="dropdown-container hidden">
-                <p>Enter a movie title and get similar recommendations.</p>
+<!-- Popup for Movie Recommender -->
+        <div id="moviePopup" class="popup" style="display: none;">
+            <div class="popup-content">
+                <span class="close" onclick="closeMovieRecommender()">&times;</span>
+                <h2>Movie Recommender</h2>
+                <label for="movieTitle">Enter a movie title:</label>
                 <input type="text" id="movieTitle" placeholder="Enter a movie title">
                 <button id="recommendBtn" class="btn">Recommend</button>
                 <div id="results"></div>
-                <div class="project-links">
-                    <a href="https://github.com/Willpatpost/Movie-Recommender" target="_blank" class="btn">View Source</a>
-                </div>
             </div>
         </div>
+        
+<!-- Button to Open Movie Recommender -->
+        <button onclick="openMovieRecommender()" id="openMovieRecommender">Open Movie Recommender</button>
 
-        <!-- More projects can be added similarly -->
+
+<!-- More projects can be added similarly -->
         
     </section>
 
@@ -108,38 +110,47 @@
 <section id="contact">
     <h2>Contact</h2>
     <p>If you'd like to get in touch, feel free to reach out via email or connect with me on LinkedIn.</p>
+<!-- Email -->
     <p>
         <img src="https://github.com/Willpatpost/William-Poston/blob/main/Images/For%20Webpage/Logos/Gmail_logo.png?raw=true" alt="Email" style="width:30px;height:30px;vertical-align:middle;">
         <a href="mailto:willpatpost@gmail.com">Email</a>
     </p>
+<!-- LinkedIn -->
     <p>
         <img src="https://github.com/Willpatpost/William-Poston/blob/main/Images/For%20Webpage/Logos/LinkedIn%20Logo.png?raw=true" alt="LinkedIn" style="width:30px;height:30px;vertical-align:middle;">
         <a href="https://www.linkedin.com/in/william-poston" target="_blank">LinkedIn</a>
     </p>
+<!-- GitHub -->
     <p>
         <img src="https://github.com/Willpatpost/William-Poston/blob/main/Images/For%20Webpage/Logos/GitHub%20logo.png?raw=true" alt="GitHub" style="width:30px;height:30px;vertical-align:middle;">
         <a href="https://github.com/Willpatpost" target="_blank">GitHub</a>
     </p>
+<!-- Leetcode -->
     <p>
         <img src="https://github.com/Willpatpost/William-Poston/blob/main/Images/For%20Webpage/Logos/LeetCode.png?raw=true" alt="LeetCode" style="width:72px;height:30px;vertical-align:middle;">
         <a href="https://leetcode.com/u/willpatpost/" target="_blank">LeetCode</a>
     </p>
+<!-- Instagram -->
     <p>
         <img src="https://github.com/Willpatpost/William-Poston/blob/main/Images/For%20Webpage/Logos/Instagram%20logo.png?raw=true" alt="Instagram" style="width:30px;height:30px;vertical-align:middle;">
         <a href="https://www.instagram.com/willlpatpost/" target="_blank">Instagram</a>
     </p>
+<!-- Facebook -->
     <p>
         <img src="https://github.com/Willpatpost/William-Poston/blob/main/Images/For%20Webpage/Logos/Facebook%20logo.png?raw=true" alt="Facebook" style="width:72px;height:30px;vertical-align:middle;">
         <a href="https://www.facebook.com/william.poston.3363" target="_blank">Facebook</a>
     </p>
+<!-- Twitter -->
     <p>
         <img src="https://github.com/Willpatpost/William-Poston/blob/main/Images/For%20Webpage/Logos/X_logo.png?raw=true" alt="X" style="width:30px;height:30px;vertical-align:middle;">
         <a href="https://x.com/Willpatpost" target="_blank">X/Twitter</a>
     </p>
+<!-- YouTube -->
     <p>
         <img src="https://github.com/Willpatpost/William-Poston/blob/main/Images/For%20Webpage/Logos/YouTube_Logo.png?raw=true" alt="YouTube" style="width:72px;height:30px;vertical-align:middle;">
         <a href="https://www.youtube.com/channel/UCaZG-RuCnBDYka4JEtVXBhQ" target="_blank">YouTube</a>
     </p>
+<!-- Chess.com -->
     <p>
         <img src="https://github.com/Willpatpost/William-Poston/blob/main/Images/For%20Webpage/Logos/Chess%20logo.png?raw=true" alt="Chess" style="width:72px;height:30px;vertical-align:middle;">
         <a href="https://www.chess.com/member/willpatpost" target="_blank">Chess.com</a>
