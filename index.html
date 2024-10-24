@@ -76,15 +76,15 @@
             </div>
         </div>
 
-<!-- Popup for Movie Recommender -->
-        <div id="moviePopup" class="popup" style="display: none;">
-            <div class="popup-content">
-                <span class="close" onclick="closeMovieRecommender()">&times;</span>
-                <h2>Movie Recommender</h2>
-                <label for="movieTitle">Enter a movie title:</label>
-                <input type="text" id="movieTitle" placeholder="Enter a movie title">
-                <button id="recommendBtn" class="btn">Recommend</button>
-                <div id="results"></div>
+<!-- Movie Recommender Project Section -->
+        <div class="project">
+            <button class="dropdown-btn" data-target="movieProjectSection">Movie Recommender</button>
+            <div id="movieProjectSection" class="dropdown-container hidden">
+                <p>This project is a movie recommendation system that uses a dataset to suggest similar movies based on a given title. It leverages content-based filtering and cosine similarity to find movies with similar genres, cast, and keywords.</p>
+                <div class="project-links">
+                    <button onclick="openMovieRecommender()" class="btn">Use Movie Recommender</button> <!-- Opens the popup -->
+                    <a href="https://github.com/Willpatpost/Movie-Recommender" target="_blank" class="btn">View Source</a>
+                </div>
             </div>
         </div>
         
