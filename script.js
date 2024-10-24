@@ -188,43 +188,54 @@ function extractFeatures(movie) {
     return (keywords + " " + cast + " " + genres).toLowerCase();
 }
 
+// Function to vectorize text features (simple word count)
+function vectorize(text) {
+    const words = text.split(" ");
+    const wordCount = {};
+    
+    words.forEach(word => {
+        wordCount[word] = (wordCount[word] || 0) + 1;
+    });
+    
+    return wordCount;
+}
+
+// Function to compute cosine similarity between two word count vectors
+function cosineSimilarity(vecA, vecB) {
+    let dotProduct = 0;
+    let normA = 0;
+    let normB = 0;
+    
+    const allWords = new Set([...Object.keys(vecA), ...Object.keys(vecB)]);
+    
+    allWords.forEach(word => {
+        const a = vecA[word] || 0;
+        const b = vecB[word] || 0;
+        
+        dotProduct += a * b;
+        normA += a * a;
+        normB += b * b;
+    });
+    
+    return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+}
+
 // Load the dataset and extract features
 fetch('Data/movie_dataset.json')
     .then(response => response.json())
     .then(data => {
         movies = data.map(movie => ({
-            title: movie.title.trim().toLowerCase(),  // Normalize title
-            features: extractFeatures(movie).split(" ")  // Split into words for cosine similarity
+            title: movie.title.trim().toLowerCase(),
+            features: vectorize(extractFeatures(movie))  // Vectorize the features
         }));
-        console.log('Movies loaded and processed:', movies.map(movie => movie.title));  // Log titles
+        console.log('Movies loaded and processed:', movies.map(movie => movie.title));
     })
     .catch(error => console.error('Error loading the movie dataset:', error));
 
 // Helper function to find a movie index by title
 function getIndexFromTitle(title) {
     const normalizedTitle = title.trim().toLowerCase();
-    console.log(`Looking for movie: "${normalizedTitle}"`);  // Log input title
-    const index = movies.findIndex(movie => movie.title === normalizedTitle);
-    if (index === -1) {
-        console.log("Movie not found");
-    } else {
-        console.log(`Movie found at index ${index}: ${movies[index].title}`);
-    }
-    return index;
-}
-
-// Cosine similarity function
-function cosineSimilarity(vecA, vecB) {
-    let dotProduct = 0;
-    let normA = 0;
-    let normB = 0;
-    const length = Math.min(vecA.length, vecB.length);  // Ensure vectors are of the same length
-    for (let i = 0; i < length; i++) {
-        dotProduct += vecA[i] * vecB[i];
-        normA += vecA[i] * vecA[i];
-        normB += vecB[i] * vecB[i];
-    }
-    return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+    return movies.findIndex(movie => movie.title === normalizedTitle);
 }
 
 // Function to recommend movies
