@@ -76,6 +76,29 @@
             </div>
         </div>
 
+<!-- Popup for Sliding Puzzle -->
+        <div id="popup" class="popup" style="display: none;">
+            <div class="popup-content">
+                <span class="close" onclick="closeSlidingPuzzle()">&times;</span>
+                <h2>Sliding Puzzle Game by William Poston</h2>
+                <label for="size">Select Puzzle Size:</label>
+                <select id="size">
+                    <option value="3">3x3</option>
+                    <option value="4">4x4</option>
+                    <option value="5">5x5</option>
+                    <option value="6">6x6</option>
+                    <option value="7">7x7</option>
+                </select>
+                <button onclick="startGame()">Play</button>
+                <div id="gameStats">
+                    <p>Time: <span id="timer">00:00:00</span></p>
+                    <p>Moves: <span id="moveCounter">0</span></p>
+                </div>
+                <div id="puzzleContainer"></div>
+                <p id="congratulationsMessage" style="display:none;">Congratulations! You finished the puzzle.</p>
+            </div>
+        </div>
+
 <!-- Movie Recommender Project Section -->
         <div class="project">
             <button class="dropdown-btn" data-target="movieProjectSection">Movie Recommender</button>
@@ -85,6 +108,18 @@
                     <button onclick="openMovieRecommender()" class="btn">Use Movie Recommender</button>
                     <a href="https://github.com/Willpatpost/Movie-Recommender" target="_blank" class="btn">View Source</a>
                 </div>
+            </div>
+        </div>
+
+<!-- Popup for Movie Recommender -->
+        <div id="moviePopup" class="popup" style="display: none;">
+            <div class="popup-content">
+                <span class="close" onclick="closeMovieRecommender()">&times;</span>
+                <h2>Movie Recommender</h2>
+                <label for="movieTitle">Enter a movie title:</label>
+                <input type="text" id="movieTitle" placeholder="Enter a movie title">
+                <button id="recommendBtn" class="btn">Recommend</button>
+                <div id="results"></div>
             </div>
         </div>
 
@@ -152,29 +187,6 @@
         <a href="https://www.chess.com/member/willpatpost" target="_blank">Chess.com</a>
     </p>
 </section>
-</div>
-
-<!-- Popup for Sliding Puzzle -->
-<div id="popup" class="popup" style="display: none;">
-    <div class="popup-content">
-        <span class="close" onclick="closeSlidingPuzzle()">&times;</span>
-        <h2>Sliding Puzzle Game by William Poston</h2>
-        <label for="size">Select Puzzle Size:</label>
-        <select id="size">
-            <option value="3">3x3</option>
-            <option value="4">4x4</option>
-            <option value="5">5x5</option>
-            <option value="6">6x6</option>
-            <option value="7">7x7</option>
-        </select>
-        <button onclick="startGame()">Play</button>
-        <div id="gameStats">
-            <p>Time: <span id="timer">00:00:00</span></p>
-            <p>Moves: <span id="moveCounter">0</span></p>
-        </div>
-        <div id="puzzleContainer"></div>
-        <p id="congratulationsMessage" style="display:none;">Congratulations! You finished the puzzle.</p>
-    </div>
 </div>
 
 <!-- Back to Top Button -->
