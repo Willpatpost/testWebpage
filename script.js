@@ -202,7 +202,15 @@ fetch('data/movie_dataset.json')
 
 // Helper function to find a movie index by title
 function getIndexFromTitle(title) {
-    return movies.findIndex(movie => movie.title === title.trim().toLowerCase());
+    const normalizedTitle = title.trim().toLowerCase();
+    console.log(`Looking for movie: "${normalizedTitle}"`);  // Log input title
+    const index = movies.findIndex(movie => movie.title === normalizedTitle);
+    if (index === -1) {
+        console.log("Movie not found");
+    } else {
+        console.log(`Movie found at index ${index}: ${movies[index].title}`);
+    }
+    return index;
 }
 
 // Cosine similarity function
@@ -210,7 +218,8 @@ function cosineSimilarity(vecA, vecB) {
     let dotProduct = 0;
     let normA = 0;
     let normB = 0;
-    for (let i = 0; i < vecA.length; i++) {
+    const length = Math.min(vecA.length, vecB.length);  // Ensure vectors are of the same length
+    for (let i = 0; i < length; i++) {
         dotProduct += vecA[i] * vecB[i];
         normA += vecA[i] * vecA[i];
         normB += vecB[i] * vecB[i];
