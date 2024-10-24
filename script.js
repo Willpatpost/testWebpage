@@ -225,7 +225,7 @@ fetch('Data/movie_dataset.json')
     .then(response => response.json())
     .then(data => {
         movies = data.map(movie => ({
-            title: movie.title.trim().toLowerCase(),
+            title: movie.title.trim(),  // Keep original title case
             features: vectorize(extractFeatures(movie))  // Vectorize the features
         }));
         console.log('Movies loaded and processed:', movies.map(movie => movie.title));
@@ -234,8 +234,8 @@ fetch('Data/movie_dataset.json')
 
 // Helper function to find a movie index by title
 function getIndexFromTitle(title) {
-    const normalizedTitle = title.trim().toLowerCase();
-    return movies.findIndex(movie => movie.title === normalizedTitle);
+    const normalizedTitle = title.trim();
+    return movies.findIndex(movie => movie.title.toLowerCase() === normalizedTitle.toLowerCase());
 }
 
 // Function to recommend movies
@@ -251,19 +251,30 @@ function recommendMovies() {
     const inputMovie = movies[movieIndex];
     const similarities = movies.map((movie, index) => {
         if (index === movieIndex) return 0;  // Ignore the same movie
-        return { title: movie.title, score: cosineSimilarity(inputMovie.features, movie.features) };
+        return { title: movie.title, score: cosineSimilarity(inputMovie.features, movie.features) * 100 };  // Convert to percentage
     });
 
     similarities.sort((a, b) => b.score - a.score);
-    const topMovies = similarities.slice(0, 20);
+    const topMovies = similarities.slice(0, 10);  // Top 10
 
     let resultsDiv = document.getElementById('results');
     resultsDiv.innerHTML = '';  // Clear previous results
-    topMovies.forEach(movie => {
+    topMovies.forEach((movie, index) => {
         const resultItem = document.createElement('p');
-        resultItem.textContent = `${movie.title} (Score: ${movie.score.toFixed(2)})`;
+        resultItem.textContent = `${index + 1}. ${movie.title} (Score: ${movie.score.toFixed(2)}%)`;
         resultsDiv.appendChild(resultItem);
     });
+}
+
+// Function to open and close the movie recommender popup
+function openMovieRecommender() {
+    const popup = document.getElementById('moviePopup');
+    popup.style.display = 'flex';  // Open popup
+}
+
+function closeMovieRecommender() {
+    const popup = document.getElementById('moviePopup');
+    popup.style.display = 'none';  // Close popup
 }
 
 document.getElementById('recommendBtn').addEventListener('click', recommendMovies);
