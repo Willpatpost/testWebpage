@@ -189,7 +189,7 @@ function extractFeatures(movie) {
 }
 
 // Load the dataset and extract features
-fetch('data/movie_dataset.json')
+fetch('Data/movie_dataset.json')
     .then(response => response.json())
     .then(data => {
         movies = data.map(movie => ({
