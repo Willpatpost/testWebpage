@@ -176,3 +176,13 @@ function checkWin() {
         document.getElementById('congratulationsMessage').style.display = 'block';
     }
 }
+
+let movies = [];  // This will hold the data once loaded.
+
+fetch('movie_dataset.json')
+  .then(response => response.json())
+  .then(data => {
+    movies = data;
+    console.log('Movies loaded:', movies);  // You can inspect the data in the browser console
+  })
+  .catch(error => console.error('Error loading the movie dataset:', error));
