@@ -479,3 +479,24 @@ footer {
         width: 80%;
     }
 }
+
+#movieTitle {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+#results {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.btn {
+    padding: 10px 15px;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
